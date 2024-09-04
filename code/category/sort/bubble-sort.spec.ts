@@ -1,10 +1,10 @@
 import { Logger } from '@nestjs/common';
 
-describe('bubble sort', () => {
+describe('Bubble Sort', () => {
   /**
-   * 인접한 두 숫자를 비교하여 교체하는 정렬
+   * 버블 정렬: 인접한 두 숫자를 비교하여 교체하는 정렬
    */
-  it('bubble sort', () => {
+  it('Bubble Sort', () => {
     const numbers = createRandomNumbers(10);
 
     const n = numbers.length;
@@ -35,6 +35,13 @@ describe('bubble sort', () => {
    * 원하는 길이 만큼 숫자 랜덤 생성
    */
   const createRandomNumbers = (length: number): number[] => {
-    return Array.from({ length }, () => Math.floor(Math.random() * 10));
+    const numbers = new Set<number>(); // 중복을 피하기 위한 Set 사용
+
+    while (numbers.size < length) {
+      const randomNum = Math.floor(Math.random() * 10);
+      numbers.add(randomNum); // 중복을 허용하지 않는 Set 에 추가
+    }
+
+    return Array.from(numbers); // Set 을 배열로 변환하여 반환
   };
 });
